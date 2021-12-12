@@ -58,27 +58,6 @@ const login = async (req, res) => {
 			return res.status(400).json("wrong credentials");
 		}
 
-<<<<<<< HEAD
-    let token;
-    try {
-      token = jwt.sign(
-        {
-          userId: existingUser.id,
-        },
-        "supera"
-      );
-    } catch (error) {
-      res.status(500).json(error);
-    }
-    res.json({
-      userId: existingUser.id,
-      username: existingUser.username,
-      token: token,
-    });
-  } catch (err) {
-    res.status(500).json(`its me${err}`);
-  }
-=======
 		let token;
 		try {
 			token = jwt.sign(
@@ -94,7 +73,6 @@ const login = async (req, res) => {
 	} catch (err) {
 		res.status(500).json(`its me${err}`);
 	}
->>>>>>> 05dd82afe5c17d0e2154f4c12fce15c8ef5734d0
 };
 
 exports.signup = signup;
