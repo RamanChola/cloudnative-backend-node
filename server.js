@@ -8,11 +8,14 @@ const cors = require("cors");
 const app = express();
 dotenv.config();
 mongoose
-  .connect(process.env.MONGODB_CONNECT_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
+  .connect(
+    "mongodb+srv://user:Sy80Sg15imobImFX@cluster0.qcxwm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    }
+  )
   .then(() => {
     console.log("Connected to MongoDB");
   })
@@ -22,7 +25,6 @@ let whitelist = [
   "http://localhost:3000",
   "https://brimo.netlify.app",
   "http://flapped.xyz",
-  "*"
 ];
 var corsOptions = {
   credentials: true,
