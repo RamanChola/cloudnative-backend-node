@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
@@ -40,7 +40,11 @@ const signup = async (req, res) => {
   } catch (error) {
     res.status(500).json(`its me${err}`);
   }
-  res.status(201).json({ userId: createdUser.id, token: token });
+  res.status(201).json({
+    userId: createdUser.id,
+    username: createdUser.username,
+    token: token,
+  });
 };
 const login = async (req, res) => {
   let existingUser;
@@ -69,7 +73,11 @@ const login = async (req, res) => {
     } catch (error) {
       res.status(500).json(error);
     }
-    res.json({ userId: existingUser.id, token: token });
+    res.json({
+      userId: existingUser.id,
+      username: existingUser.username,
+      token: token,
+    });
   } catch (err) {
     res.status(500).json(`its me${err}`);
   }
