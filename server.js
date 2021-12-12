@@ -18,9 +18,17 @@ mongoose
 	})
 	.catch((err) => console.log(err));
 
+let whitelist = ["http://localhost:3000", "http://localhost:5000"];
 var corsOptions = {
-	origin: ["http://www.example.com/", "http://localhost:3000"],
+	origin: (origin, callback) => {
+		if (whitelist.indexOf(origin) !== -1) {
+			callback(null, true);
+		} else {
+			callback(new Error("Not allowed by CORS"));
+		}
+	},
 	optionsSuccessStatus: 200, // For legacy browser support
+	credentials: true,
 };
 
 app.use(express.json());
@@ -35,5 +43,5 @@ app.get("/", (req, res) => {
 app.use("/api/users", users);
 app.use("/api/data", data);
 app.listen(port, () => {
-	console.log(`app is listening at http://localhost:${port}`);
+	console.log(`app is listening at {port}`);
 });
