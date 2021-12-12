@@ -22,6 +22,7 @@ let whitelist = [
   "http://localhost:3000",
   "https://brimo.netlify.app",
   "http://flapped.xyz",
+  "*"
 ];
 var corsOptions = {
   credentials: true,
