@@ -24,11 +24,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Hi There");
+	res.send("Server running without error :)");
 });
 
 app.use("/api/users", users);
 app.use("/api/data", data);
 app.listen(port, () => {
-  console.log(`app is listening at http://localhost:${port}`);
+	console.log(`app is listening at port `, port);
 });
