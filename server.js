@@ -18,24 +18,20 @@ mongoose
 	})
 	.catch((err) => console.log(err));
 
-let whitelist = ["http://localhost:3000", "http://localhost:5000"];
+let whitelist = ["http://localhost:3000"];
 var corsOptions = {
-	origin: (origin, callback) => {
-		if (whitelist.indexOf(origin) !== -1) {
-			callback(null, true);
-		} else {
-			callback(new Error("Not allowed by CORS"));
-		}
-	},
-	optionsSuccessStatus: 200, // For legacy browser support
 	credentials: true,
+	optionsSuccessStatus: 200, // For legacy browser support
+	origin: (origin, callback) => {
+		if (whitelist.indexOf(origin) !== -1) return callback(null, true);
+		return callback(new Error("Not allowed by CORS"));
+	},
 };
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
-app.use(cors(corsOptions));
 app.get("/", (req, res) => {
 	res.send("Server running without error :)");
 });
@@ -43,5 +39,5 @@ app.get("/", (req, res) => {
 app.use("/api/users", users);
 app.use("/api/data", data);
 app.listen(port, () => {
-	console.log(`app is listening at {port}`);
+	console.log(`app is listening at port `, port);
 });
