@@ -18,10 +18,16 @@ mongoose
 	})
 	.catch((err) => console.log(err));
 
+var corsOptions = {
+	origin: ["http://www.example.com/", "http://localhost:3000"],
+	optionsSuccessStatus: 200, // For legacy browser support
+};
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 
+app.use(cors(corsOptions));
 app.get("/", (req, res) => {
 	res.send("Server running without error :)");
 });
