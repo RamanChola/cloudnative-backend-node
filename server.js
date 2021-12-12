@@ -18,7 +18,7 @@ mongoose
 	})
 	.catch((err) => console.log(err));
 
-let whitelist = ["http://localhost:3000"];
+let whitelist = ["http://localhost:3000", "https://brimo.netlify.app"];
 var corsOptions = {
 	credentials: true,
 	optionsSuccessStatus: 200, // For legacy browser support
