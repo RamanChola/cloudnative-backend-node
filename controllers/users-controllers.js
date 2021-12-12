@@ -3,50 +3,6 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
-<<<<<<< HEAD
-  const { username, email, password } = req.body;
-  let existingUser;
-  try {
-    existingUser = await User.findOne({ email: email });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-  if (existingUser) {
-    return res.status(422).json("User exists already, please login instead");
-  }
-  let EncPass;
-  try {
-    EncPass = await bcrypt.hash(password, 12);
-  } catch (err) {
-    console.log(err);
-  }
-  const createdUser = new User({
-    username,
-    email,
-    password: EncPass,
-  });
-  try {
-    await createdUser.save();
-  } catch (err) {
-    res.status(500).json(err);
-  }
-  let token;
-  try {
-    token = jwt.sign(
-      {
-        userId: createdUser.id,
-      },
-      "supera"
-    );
-  } catch (error) {
-    res.status(500).json(`its me${err}`);
-  }
-  res.status(201).json({
-    userId: createdUser.id,
-    username: createdUser.username,
-    token: token,
-  });
-=======
 	const { username, email, password } = req.body;
 	let existingUser;
 	try {
@@ -85,7 +41,6 @@ const signup = async (req, res) => {
 		res.status(500).json(`its me${err}`);
 	}
 	res.status(201).json({ userId: createdUser.id, token: token });
->>>>>>> 05dd82afe5c17d0e2154f4c12fce15c8ef5734d0
 };
 const login = async (req, res) => {
 	let existingUser;
